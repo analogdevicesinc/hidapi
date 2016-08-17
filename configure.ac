@@ -57,17 +57,11 @@ case $host in
 	AC_MSG_RESULT([ (Linux back-end)])
 	AC_DEFINE(OS_LINUX, 1, [Linux implementations])
 	AC_SUBST(OS_LINUX)
-	backend="linux"
+	backend="libusb"
 	os="linux"
 	threads="pthreads"
 
-	# HIDAPI/hidraw libs
-	PKG_CHECK_MODULES([libudev], [libudev], true, [hidapi_lib_error libudev])
-	LIBS_HIDRAW_PR+=" $libudev_LIBS"
-	CFLAGS_HIDRAW+=" $libudev_CFLAGS"
-
 	# HIDAPI/libusb libs
-	AC_CHECK_LIB([rt], [clock_gettime], [LIBS_LIBUSB_PRIVATE+=" -lrt"], [hidapi_lib_error librt])
 	PKG_CHECK_MODULES([libusb], [libusb-1.0 >= 1.0.9], true, [hidapi_lib_error libusb-1.0])
 	LIBS_LIBUSB_PRIVATE+=" $libusb_LIBS"
 	CFLAGS_LIBUSB+=" $libusb_CFLAGS"
