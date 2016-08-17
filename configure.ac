@@ -131,6 +131,8 @@ if test "x$os" = xwindows; then
 	AC_SUBST(OS_WINDOWS)
 	LDFLAGS="${LDFLAGS} -no-undefined"
 	LIBS="${LIBS} -lsetupapi"
+	SETUPAPI_LIBS="-lsetupapi"
+	AC_SUBST(SETUPAPI_LIBS)
 fi
 
 if test "x$threads" = xpthreads; then
